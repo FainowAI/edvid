@@ -1,6 +1,6 @@
-# edvid
+# Fainow Edits
 
-Editor de vídeo por conversa. Você joga o material bruto numa pasta, abre seu
+Editor de vídeo por conversa da Fainow. Você joga o material bruto numa pasta, abre seu
 agente ali dentro e diz *"edita isso num Reels"*. Ele transcreve, escolhe as
 melhores tomadas, corta os silêncios, corrige a cor e te mostra o resultado para
 aprovação — depois disso entram legendas, gráficos e trilha.
@@ -11,23 +11,27 @@ horizontal** (YouTube).
 **A transcrição roda na sua máquina.** Nenhuma chave de API, nenhuma cota,
 nenhum limite de tamanho.
 
-Este repositório contém somente a skill para agentes. O aplicativo instalável
-é desenvolvido separadamente em
-[fillrochaa/edvid-desktop](https://github.com/fillrochaa/edvid-desktop).
+Este repositório contém somente a skill para agentes. É um fork interno da
+[skill edvid](https://github.com/fillrochaa/edvid) (MIT) com a marca Fainow; o
+remoto `upstream` aponta para o projeto original para sincronizar atualizações
+de tempos em tempos (`git fetch upstream && git merge upstream/main`). O
+aplicativo instalável é desenvolvido separadamente em
+[FainowAI/Fainow-Edits](https://github.com/FainowAI/Fainow-Edits).
 
 ---
 
 ## Instalação
 
-São **dois comandos**: um para os programas que a edvid usa, outro para a edvid.
+São **dois comandos**: um para os programas que o Fainow Edits usa, outro para o
+Fainow Edits.
 
 ### 1. Os programas (uma vez na vida)
 
-- **`uv`** — gerenciador de pacotes Python. A edvid usa para tudo, e ele também
+- **`uv`** — gerenciador de pacotes Python. O Fainow Edits usa para tudo, e ele também
   cuida de instalar o Python certo, então você não instala Python separado.
 - **`ffmpeg`** — corte, cor e render (Fase 1).
 - **`node`** — Remotion, usado nas legendas e gráficos (Fase 2).
-- **`git`** — a edvid não usa. É útil para o Claude Code e para quem for
+- **`git`** — o Fainow Edits não usa. É útil para o Claude Code e para quem for
   desenvolver a skill; no Codex, não é requisito da edição.
 
 **Windows** — abra o **PowerShell** (não o Prompt de Comando antigo):
@@ -71,10 +75,10 @@ Se algum não responder, instale só ele e volte aqui. No Windows:
 Se você pular esta conferência não tem problema — o instalador do passo 3 refaz
 ela no fim e diz o que faltou.
 
-### 3. Instale a edvid — um comando
+### 3. Instale o Fainow Edits — um comando
 
 ```bash
-uv run https://raw.githubusercontent.com/fillrochaa/edvid/main/edvid_install.py
+uv run https://raw.githubusercontent.com/FainowAI/edvid/main/edvid_install.py
 ```
 
 O mesmo comando, sem alterar nada, no PowerShell do Windows, no Terminal do Mac
@@ -92,7 +96,7 @@ Pronto. Não há passo 4.
 - Confere `ffmpeg` e `Node` no fim e, se você pulou o passo 1 ou esqueceu de
   reabrir o terminal, imprime o comando de instalação **da sua plataforma**.
 - Não encosta numa instalação de desenvolvedor (pasta com `.git`) sem `--force`,
-  e preserva suas configurações se você já tinha a edvid instalada.
+  e preserva suas configurações se você já tinha o Fainow Edits instalado.
 
 Na primeira transcrição ele baixa os modelos do Whisper e de alinhamento
 (alguns GB). Depois disso ficam em cache e nunca mais baixam.
@@ -116,14 +120,14 @@ não são tocados.
 Rode o mesmo comando da instalação. Ele substitui a versão antiga pela nova.
 
 ```bash
-uv run https://raw.githubusercontent.com/fillrochaa/edvid/main/edvid_install.py
+uv run https://raw.githubusercontent.com/FainowAI/edvid/main/edvid_install.py
 ```
 
 ---
 
 ## Sobre a transcrição
 
-A edvid usa [WhisperX](https://github.com/m-bain/whisperX): transcreve com o
+O Fainow Edits usa [WhisperX](https://github.com/m-bain/whisperX): transcreve com o
 Whisper e depois faz **alinhamento forçado** do texto contra a forma de onda,
 com um modelo wav2vec2 do idioma detectado. Isso importa porque as legendas
 karaokê da Fase 2 leem o tempo de cada palavra — um decoder comum estima esses
@@ -147,7 +151,7 @@ automaticamente.
 ## Trilha sonora com IA (opcional)
 
 A Fase 3 pode **compor** uma trilha sob medida para a sua edição, em vez de você
-procurar uma música pronta. Isso usa o Treblo, que é o único recurso da edvid com
+procurar uma música pronta. Isso usa o Treblo, que é o único recurso do Fainow Edits com
 cadastro — e é opcional: sem ele a Fase 3 continua funcionando com um arquivo de
 música seu.
 
@@ -158,7 +162,7 @@ Se quiser usar, crie a chave uma vez:
 3. Abra a seção **Developers**.
 4. Clique em **Get Started for Free**.
 5. Clique em **API Keys**.
-6. Clique em **Create Key**, escreva o nome **Edvid** e confirme em **Create**.
+6. Clique em **Create Key**, escreva o nome **Fainow Edits** e confirme em **Create**.
 7. Copie a chave.
 
 Depois cole a chave na conversa com o agente e peça para ele guardar. Ele grava

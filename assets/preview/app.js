@@ -772,7 +772,7 @@ async function applyState(data) {
   S.fps = S.state.fps || 24;
   S.savedPending = !!data.hasPendingEdits;
 
-  $('projectName').textContent = S.state.project || 'Edvid';
+  $('projectName').textContent = S.state.project || 'Fainow Edits';
   $('stateMessage').textContent = S.state.message || '';
 
   const ranges = (data.edl && data.edl.ranges) || [];

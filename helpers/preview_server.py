@@ -1,4 +1,4 @@
-"""Edvid preview server — serves the standard editing interface + session media.
+"""Fainow Edits preview server — serves the standard editing interface + session media.
 
 The interface app (assets/preview/) is IMMUTABLE and lives in the skill repo;
 per-session it is fed by data only:
@@ -376,7 +376,7 @@ def _check_access(root: Path) -> None:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Edvid preview interface server")
+    ap = argparse.ArgumentParser(description="Fainow Edits preview interface server")
     ap.add_argument("--root", type=Path, required=True, help="the session <edit> dir")
     ap.add_argument("--port", type=int, default=4820)
     args = ap.parse_args()
@@ -390,7 +390,7 @@ def main() -> None:
 
     Handler.root = root
     srv = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
-    print(f"Edvid preview → http://127.0.0.1:{args.port}  (root: {root})", flush=True)
+    print(f"Fainow Edits preview → http://127.0.0.1:{args.port}  (root: {root})", flush=True)
     srv.serve_forever()
 
 

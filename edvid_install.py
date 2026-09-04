@@ -1,6 +1,6 @@
-"""One-command installer for the edvid skill.
+"""One-command installer for the Fainow Edits skill.
 
-    uv run https://raw.githubusercontent.com/fillrochaa/edvid/main/edvid_install.py
+    uv run https://raw.githubusercontent.com/FainowAI/edvid/main/edvid_install.py
 
 `uv run <url>` and not `uvx --from <package>`: uvx would resolve and install the
 whole edvid dependency tree — torch, pandas, numpy — merely to run a script that
@@ -37,8 +37,8 @@ import urllib.request
 from pathlib import Path
 
 
-REPO = "fillrochaa/edvid"
-SKILL_NAME = "edvid"
+REPO = "FainowAI/edvid"
+SKILL_NAME = "fainow-edits"
 
 # Phase 2 needs Remotion domain knowledge, which lives in a SUBDIRECTORY of its
 # own repo — so it cannot be cloned into place and has always been a second
@@ -334,7 +334,7 @@ def hint(tool: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(
         prog="edvid-install",
-        description="Instala a skill edvid no seu agente (Claude Code, Codex, …).")
+        description="Instala a skill Fainow Edits no seu agente (Claude Code, Codex, …).")
     ap.add_argument("--ref", default="main", help="branch ou tag (padrão: main)")
     ap.add_argument("--target", default=None,
                     help="pasta de skills específica, em vez de detectar")
@@ -344,7 +344,7 @@ def main() -> None:
                     help="não instalar a skill do Remotion (só a Fase 1)")
     args = ap.parse_args()
 
-    log("edvid — instalação")
+    log("Fainow Edits — instalação")
     log()
 
     targets = detect_targets(args.target)
@@ -422,7 +422,7 @@ def main() -> None:
     # Claude Code leans on it, so its absence is worth a word rather than
     # silence. Deliberately NOT added to `missing`: nothing here is blocked by it.
     if not shutil.which("git"):
-        log(f"  · git        — a edvid não usa, mas o Claude Code sim. {hint('git')}")
+        log(f"  · git        — o Fainow Edits não usa, mas o Claude Code sim. {hint('git')}")
 
     # Say where it landed, explicitly. The failure this replaces was silent: the
     # installer reported success while having skipped the agent the user actually
@@ -451,7 +451,7 @@ def main() -> None:
                 log("    É um clone git. Um clone limpo é substituído pela versão")
                 log("    publicada; se tiver alterações suas, ele é guardado ao lado.")
                 log("    Rode de novo com --force:")
-                log("      uv run https://raw.githubusercontent.com/fillrochaa/edvid/"
+                log("      uv run https://raw.githubusercontent.com/FainowAI/edvid/"
                     "main/edvid_install.py --force")
         log("=" * 68)
 
@@ -480,14 +480,14 @@ def main() -> None:
         ", ".join(instalados[:-1]) + " e " + instalados[-1]
 
     if ja_existia:
-        log("Edvid atualizada! Você está na última versão disponibilizada por")
-        log("Fill Rocha.")
+        log("Fainow Edits atualizado! Você está na última versão disponibilizada")
+        log("pela Fainow.")
         log()
         log("Reinicie o agente para ele carregar a nova versão.")
     else:
-        log(f"Tudo pronto! A Edvid está instalada e pronta para usar no {onde}.")
+        log(f"Tudo pronto! O Fainow Edits está instalado e pronto para usar no {onde}.")
         log()
-        log("Reinicie o agente e abra uma nova sessão chamando a Skill Edvid.")
+        log("Reinicie o agente e abra uma nova sessão chamando a Skill Fainow Edits.")
         log()
         # The one operational detail that cannot be dropped: the session has to
         # start in the footage folder. Opened anywhere else the agent has

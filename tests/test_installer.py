@@ -31,7 +31,7 @@ class InstallerPayloadTests(unittest.TestCase):
 
             destination = edvid_install.install_into(source, skills, force=False)
 
-            self.assertEqual(destination, skills / "edvid")
+            self.assertEqual(destination, skills / edvid_install.SKILL_NAME)
             self.assertFalse((destination / "desktop").exists())
             self.assertFalse((destination / "contributor-only.txt").exists())
             for entry in edvid_install.SKILL_PAYLOAD:
@@ -42,7 +42,7 @@ class InstallerPayloadTests(unittest.TestCase):
             root = Path(temporary)
             source = self.make_source(root)
             skills = root / "skills"
-            destination = skills / "edvid"
+            destination = skills / edvid_install.SKILL_NAME
             (destination / ".venv").mkdir(parents=True)
             (destination / ".venv" / "keep.txt").write_text(
                 "venv", encoding="utf-8")
@@ -68,7 +68,7 @@ class InstallerPayloadTests(unittest.TestCase):
             root = Path(temporary)
             source = self.make_source(root)
             (source / "SKILL.md").unlink()
-            destination = root / "skills" / "edvid"
+            destination = root / "skills" / edvid_install.SKILL_NAME
             destination.mkdir(parents=True)
             marker = destination / "working-install.txt"
             marker.write_text("keep", encoding="utf-8")

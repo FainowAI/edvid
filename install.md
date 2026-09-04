@@ -1,9 +1,9 @@
 ---
-name: edvid-install
-description: Verify or repair an edvid install (Claude Code, Codex, or any agent with a skills directory). The user installs with one command from README.md; this file is for checking that it worked and fixing what didn't.
+name: fainow-edits-install
+description: Verify or repair a Fainow Edits install (Claude Code, Codex, or any agent with a skills directory). The user installs with one command from README.md; this file is for checking that it worked and fixing what didn't.
 ---
 
-# edvid install
+# Fainow Edits install
 
 Use this file only for first-time setup, verification or repair. For daily
 editing, read `SKILL.md`. Always read `helpers/` — that's where the scripts live.
@@ -11,7 +11,7 @@ editing, read `SKILL.md`. Always read `helpers/` — that's where the scripts li
 > **The user installs, you verify.** `README.md` gives them one command:
 >
 > ```
-> uv run https://raw.githubusercontent.com/fillrochaa/edvid/main/edvid_install.py
+> uv run https://raw.githubusercontent.com/FainowAI/edvid/main/edvid_install.py
 > ```
 >
 > That is the supported install and it is the user's action, not yours. If
@@ -24,7 +24,7 @@ editing, read `SKILL.md`. Always read `helpers/` — that's where the scripts li
 
 ## What the install consists of
 
-1. The skill directory itself — `~/.claude/skills/edvid`, or the equivalent for
+1. The skill directory itself — `~/.claude/skills/fainow-edits`, or the equivalent for
    Codex (`~/.codex/skills`) or Antigravity (`~/.gemini/config/skills`). `edvid_install.py` puts it there; it needs no git on the user's
    machine because it unpacks a tarball.
 2. Python deps via `uv sync`, which includes **WhisperX** — transcription is a
@@ -41,7 +41,7 @@ keyless tool look like it needs an account.
 ## Two layouts
 
 - **User layout** (what the installer produces, and what you should assume): the
-  skill directory IS `~/.claude/skills/edvid` or `~/.codex/skills/edvid`.
+  skill directory IS `~/.claude/skills/fainow-edits` or `~/.codex/skills/fainow-edits`.
   Nothing to register, no symlink, identical on every OS.
 - **Contributor layout**: repo cloned wherever the user keeps projects, plus a
   link into the skills directory. Only for someone developing the skill. The
@@ -49,15 +49,15 @@ keyless tool look like it needs an account.
 
     ```bash
     # macOS / Linux
-    ln -sfn ~/Developer/edvid ~/.claude/skills/edvid
-    ln -sfn ~/Developer/edvid ~/.codex/skills/edvid
+    ln -sfn ~/Developer/edvid ~/.claude/skills/fainow-edits
+    ln -sfn ~/Developer/edvid ~/.codex/skills/fainow-edits
     ```
 
     ```powershell
     # Windows — a junction needs no admin rights, unlike a symlink
-    New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\edvid" `
+    New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\fainow-edits" `
       -Target "$env:USERPROFILE\Developer\edvid"
-    New-Item -ItemType Junction -Path "$env:USERPROFILE\.codex\skills\edvid" `
+    New-Item -ItemType Junction -Path "$env:USERPROFILE\.codex\skills\fainow-edits" `
       -Target "$env:USERPROFILE\Developer\edvid"
     ```
 
